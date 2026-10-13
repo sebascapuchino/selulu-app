@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f2ec">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Mesa">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <title>Mesa · Encargos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="login-screen" class="veil center">
+    <form id="login-form" class="signin" novalidate>
+      <div class="eyebrow">Espacio compartido</div>
+      <h1>Mesa<span class="dot-accent">.</span></h1>
+      <p>Los encargos de hoy, sin perderlos en el chat.</p>
+      <div class="field"><label for="email">Correo</label><input id="email" type="email" autocomplete="username" autocapitalize="none" required></div>
+      <div class="field"><label for="password">Contraseña</label><input id="password" type="password" autocomplete="current-password" required></div>
+      <button class="primary" type="submit">Entrar</button>
+      <button type="button" class="linklike" id="forgot">¿Olvidaste tu contraseña?</button>
+      <div id="login-error" class="notice hidden" role="alert"></div>
+    </form>
+  </div>
+
+  <div id="app" class="shell hidden">
+    <header>
+      <div class="brandbox">
+        <div class="brand">Mesa<span>.</span></div>
+        <div class="subbrand">Encargos compartidos</div>
+      </div>
+      <div class="topright">
+        <span class="sync" aria-live="polite"><i id="sync-dot" class="dot warn"></i><span id="sync-text">Conectando…</span></span>
+        <button id="bell-btn" type="button" class="small bell-btn" aria-label="Encargos en otras fechas">🔔<span id="bell-badge" class="bell-badge hidden">0</span></button>
+        <button id="logout" type="button" class="small">Salir</button>
+      </div>
+    </header>
+
+    <div id="ios-hint" class="ios-hint hidden">
+      <span>Para instalar: toca Compartir y luego Añadir a pantalla de inicio.</span>
+      <button id="ios-hint-close" type="button" class="small" aria-label="Cerrar aviso">✕</button>
+    </div>
+
+    <div class="pagehead">
+      <div class="pagetitle">
+        <div class="eyebrow" id="kicker">Jornada</div>
+        <h1 id="page-title">Los encargos</h1>
+        <p id="page-sub">Todo en un mismo lugar.</p>
+      </div>
+      <div class="headtools">
+        <div id="rate-box" class="ratebox">
+          <label for="rate-input">Tasa €</label>
+          <input id="rate-input" type="number" step="0.01" min="0" inputmode="decimal" placeholder="Bs por €">
+          <span id="rate-warn" class="rate-warn hidden"></span>
+        </div>
+        <div id="day-box" class="ratebox">
+          <label for="day-input">Día de producción</label>
+          <input id="day-input" type="date" aria-label="Día de producción">
+        </div>
+        <button id="new-order" type="button" class="accent">+ Nuevo pedido</button>
+        <button id="clean-btn" type="button">Limpiar</button>
+      </div>
+    </div>
+
+    <nav class="tabs" aria-label="Secciones">
+      <button type="button" class="tab active" data-tab="day">Jornada</button>
+      <button type="button" class="tab" data-tab="simple">Simple</button>
+      <button type="button" class="tab" data-tab="catalog">Carta</button>
+      <button type="button" class="tab" data-tab="clients">Clientes</button>
+      <button type="button" class="tab" data-tab="history">Historial</button>
+    </nav>
+
+    <main id="view"></main>
+  </div>
+
+  <div id="bell-panel" class="bell-panel hidden"></div>
+  <div id="menu-pop" class="menu-pop hidden"></div>
+  <div id="layers"></div>
+  <div id="toasts" aria-live="polite"></div>
+  <div id="version-tag" class="version-tag"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
